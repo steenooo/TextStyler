@@ -133,8 +133,10 @@
     previewText.lang = document.getElementById('languageSelector').value;
     previewText.style.fontSize = fontSize + 'px';
     previewText.style.writingMode = textOrientation === 'vertical' ? 'vertical-rl' : 'horizontal-tb';
+    previewText.style.textOrientation = 'upright';
     if (textOrientation === 'vertical') {
       inputText = inputText.replace(/。/g, '。<br>');
+
     }
     previewText.innerHTML = inputText;
   });
