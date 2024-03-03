@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Styler</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .preview-text {
+      margin-top: 20px;
+      font-family: 'Microsoft YaHei', '微软雅黑', 'SimHei', '黑体', Arial, sans-serif;
+    }
+    #previewText {
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      word-break: break-all;
+      font-variant-numeric: lining-nums;
+    }
+    .form-group {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h2 class="mt-5">Text Styler</h2>
+      <form id="textForm">
+        <div class="form-group row">
+          <label for="inputText" class="col-sm-3 col-form-label">Enter Text:</label>
+          <div class="col-sm-9">
+            <textarea class="form-control" id="inputText" rows="6"></textarea>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="languageSelector" class="col-sm-3 col-form-label">Standard:</label>
+          <div class="col-sm-9">
+            <select class="form-control" id="languageSelector">
+              <option value="zh-TW">Taiwan</option>
+              <option value="zh-CN">PRC</option>
+              <option value="ko">Korean</option>
+              <option value="ja">Japanese</option>
+              <option value="zh">KangXi</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="fontSelector" class="col-sm-3 col-form-label">Select Font:</label>
+          <div class="col-sm-9">
+            <select class="form-control" id="fontSelector">
+              <option value="'Microsoft YaHei', '微软雅黑'">Microsoft YaHei / 微软雅黑</option>
+              <option value="'SimSun', '宋体'">SimSun / 宋体</option>
+              <option value="'SimHei', '黑体'">SimHei / 黑体</option>
+              <option value="Arial">Arial</option>
+              <option value="Verdana">Verdana</option>
+              <option value="Helvetica">Helvetica</option>
+              <option value="Times New Roman">Times New Roman</option>
+              <option value="Courier New">Courier New</option>
+              <option value="Georgia">Georgia</option>
+              <option value="'FangSong', '仿宋'">FangSong / 仿宋</option>
+              <option value="'Kaiti TC', '楷体'">Kaiti TC / 楷体</option>
+              <option value="'STSong', '华文宋体'">STSong / 华文宋体</option>
+              <option value="'STKaiti', '华文楷体'">STKaiti / 华文楷体</option>
+              <option value="'STFangsong', '华文仿宋'">STFangsong / 华文仿宋</option>
+              <option value="LiSu">隶书</option>
+              <option value="DFKai-SB">標楷體</option>
+              <option value="TW-Kai">臺北黑體</option>
+              <option value="HanaMinB">花園明朝B</option>
+              <option value="Yu Gothic">Yu Gothic</option>
+              <option value="Meiryo">Meiryo</option>
+              <option value="MS PMincho">ＭＳ 明朝</option>
+              <option value="MS Gothic">ＭＳ ゴシック</option>
+              <option value="Hiragino Mincho ProN">ヒラギノ明朝 ProN</option>
+              <option value="Hiragino Kaku Gothic ProN">ヒラギノ角ゴ ProN</option>
+              <option value="Kozuka Mincho Pro">小塚明朝 Pro</option>
+              <option value="Kozuka Gothic Pro">小塚ゴシック Pro</option>
+
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="fontSize" class="col-sm-3 col-form-label">Font Size:</label>
+          <div class="col-sm-9">
+            <input type="number" class="form-control" id="fontSize" value="25">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="textOrientation" class="col-sm-3 col-form-label">Text Orientation:</label>
+          <div class="col-sm-9">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="textOrientation" id="horizontal" value="horizontal" checked>
+              <label class="form-check-label" for="horizontal">Horizontal</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="textOrientation" id="vertical" value="vertical">
+              <label class="form-check-label" for="vertical">Vertical</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-12 text-right">
+            <button type="submit" class="btn btn-primary">Apply Styling</button>
+          </div>
+        </div>
+      </form>
+      <div class="preview-text mt-4">
+        <h3>Preview Text</h3>
+        <p id="previewText"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+  // Apply styling when form is submitted
+  document.getElementById('textForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    var inputText = document.getElementById('inputText').value;
+    var font = document.getElementById('fontSelector').value;
+    var fontSize = document.getElementById('fontSize').value;
+    var textOrientation = document.querySelector('input[name="textOrientation"]:checked').value;
+    var previewText = document.getElementById('previewText');
+    previewText.textContent = inputText;
+    previewText.style.fontFamily = font;
+    previewText.lang = document.getElementById('languageSelector').value;
+    previewText.style.fontSize = fontSize + 'px';
+    previewText.style.writingMode = textOrientation === 'vertical' ? 'vertical-rl' : 'horizontal-tb';
+    if (textOrientation === 'vertical') {
+      inputText = inputText.replace(/。/g, '。<br>');
+    }
+    previewText.innerHTML = inputText;
+  });
+</script>
+</body>
+</html>
