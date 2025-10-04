@@ -20,6 +20,11 @@
     .form-group {
       margin-bottom: 10px;
     }
+    @font-face {
+      font-family: 'FangZhengSeal';
+      src: url('./assets/fonts/FangZhengXiaoZhuanFanTi.ttf') format('truetype');
+      font-display: swap;
+    }
   </style>
 </head>
 <body>
@@ -65,7 +70,7 @@
               <option value="'STSong', '华文宋体'">STSong / 华文宋体</option>
               <option value="'STKaiti', '华文楷体'">STKaiti / 华文楷体</option>
               <option value="'STFangsong', '华文仿宋'">STFangsong / 华文仿宋</option>
-              <option value="LiSu">隶书</option>
+              <option value="LiSu">隸書</option>
               <option value="DFKai-SB">標楷體</option>
               <option value="TW-Kai">臺北黑體</option>
               <option value="HanaMinB">花園明朝B</option>
@@ -77,7 +82,7 @@
               <option value="Hiragino Kaku Gothic ProN">ヒラギノ角ゴ ProN</option>
               <option value="Kozuka Mincho Pro">小塚明朝 Pro</option>
               <option value="Kozuka Gothic Pro">小塚ゴシック Pro</option>
-
+              <option value="FangZhengSeal">方正小篆繁體</option>
             </select>
           </div>
         </div>
@@ -136,7 +141,7 @@
     previewText.style.textOrientation = 'upright';
     if (textOrientation === 'vertical') {
       inputText = inputText.replace(/。/g, '。<br>');
-
+      inputText = inputText.replace(/./g, '。<br>');
     }
     previewText.innerHTML = inputText;
   });
